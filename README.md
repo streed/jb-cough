@@ -20,20 +20,35 @@ A Discord bot that listens to voice chat, detects when someone coughs, and posts
 
 ## Installation
 
-### 1. Clone the Repository
+### Option 1: GitHub Codespaces (Easiest!)
+
+The fastest way to get started - no local setup required!
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streed/jb-cough)
+
+1. Click the badge above or the "Code" button on GitHub → "Codespaces" → "Create codespace"
+2. Wait for the environment to build (automatic installation of all dependencies)
+3. Edit `.env` with your Discord bot token and channel IDs
+4. Run `python bot.py`
+
+See [.devcontainer/README.md](.devcontainer/README.md) for detailed Codespaces documentation.
+
+### Option 2: Local Installation
+
+#### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/streed/jb-cough.git
 cd jb-cough
 ```
 
-### 2. Install Python Dependencies
+#### 2. Install Python Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Install FFmpeg
+#### 3. Install FFmpeg
 
 **Ubuntu/Debian:**
 ```bash
@@ -49,7 +64,7 @@ brew install ffmpeg
 **Windows:**
 Download from [ffmpeg.org](https://ffmpeg.org/download.html) and add to PATH.
 
-### 4. Create a Discord Bot
+#### 4. Create a Discord Bot
 
 1. Go to [Discord Developer Portal](https://discord.com/developers/applications)
 2. Click "New Application" and give it a name
@@ -60,7 +75,7 @@ Download from [ffmpeg.org](https://ffmpeg.org/download.html) and add to PATH.
    - Server Members Intent
    - Presence Intent
 
-### 5. Invite the Bot to Your Server
+#### 5. Invite the Bot to Your Server
 
 1. In the Discord Developer Portal, go to "OAuth2" → "URL Generator"
 2. Select scopes: `bot`
@@ -73,7 +88,7 @@ Download from [ffmpeg.org](https://ffmpeg.org/download.html) and add to PATH.
 4. Copy the generated URL and open it in your browser
 5. Select your server and authorize the bot
 
-### 6. Configure the Bot
+#### 6. Configure the Bot
 
 1. Copy the example environment file:
    ```bash

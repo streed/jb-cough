@@ -2,14 +2,31 @@
 
 Get your cough detection bot running in 5 minutes!
 
-## Prerequisites
+## Fastest Option: GitHub Codespaces ⚡
+
+**Zero setup required!** Everything is pre-configured.
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streed/jb-cough)
+
+1. Click the badge above
+2. Wait 2-3 minutes for environment setup
+3. Edit `.env` file with your Discord token
+4. Run `python bot.py`
+
+✨ Done! See [.devcontainer/README.md](.devcontainer/README.md) for Codespaces details.
+
+---
+
+## Local Setup (Alternative)
+
+### Prerequisites
 
 - Python 3.8+
 - FFmpeg installed
 - A Discord account
 - Admin access to a Discord server
 
-## Step-by-Step Setup
+### Step-by-Step Setup
 
 ### 1. Install Dependencies
 
