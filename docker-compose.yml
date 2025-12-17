@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  cough-bot:
+    build: .
+    container_name: discord-cough-bot
+    restart: unless-stopped
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - TEXT_CHANNEL_ID=${TEXT_CHANNEL_ID}
+      - VOICE_CHANNEL_ID=${VOICE_CHANNEL_ID}
+      - COUGH_DETECTION_THRESHOLD=${COUGH_DETECTION_THRESHOLD:-0.5}
+      - VOLUME_THRESHOLD=${VOLUME_THRESHOLD:-500}
+    volumes:
+      - ./assets:/app/assets:ro
+    env_file:
+      - .env
