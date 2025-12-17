@@ -25,16 +25,21 @@ def check_env_file():
 
 def check_dependencies():
     """Check if required Python packages are installed."""
-    required = ['discord', 'dotenv', 'numpy']
+    # Map import names to package names
+    required = {
+        'discord': 'discord.py',
+        'dotenv': 'python-dotenv',
+        'numpy': 'numpy'
+    }
     missing = []
     
-    for package in required:
+    for import_name, package_name in required.items():
         try:
-            __import__(package)
-            print(f"✓ {package} installed")
+            __import__(import_name)
+            print(f"✓ {package_name} installed")
         except ImportError:
-            missing.append(package)
-            print(f"✗ {package} not installed")
+            missing.append(package_name)
+            print(f"✗ {package_name} not installed")
     
     if missing:
         print("\nInstall missing packages with:")

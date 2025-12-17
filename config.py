@@ -7,8 +7,19 @@ load_dotenv()
 
 # Discord Configuration
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
-TEXT_CHANNEL_ID = int(os.getenv('TEXT_CHANNEL_ID', 0))
-VOICE_CHANNEL_ID = int(os.getenv('VOICE_CHANNEL_ID', 0))
+
+# Convert channel IDs to int, handling empty strings
+def _get_channel_id(env_var: str) -> int:
+    """Get channel ID from environment variable."""
+    value = os.getenv(env_var, '0')
+    try:
+        return int(value) if value else 0
+    except ValueError:
+        print(f"Warning: Invalid {env_var} value '{value}', using 0")
+        return 0
+
+TEXT_CHANNEL_ID = _get_channel_id('TEXT_CHANNEL_ID')
+VOICE_CHANNEL_ID = _get_channel_id('VOICE_CHANNEL_ID')
 
 # Cough Detection Settings
 COUGH_DETECTION_THRESHOLD = float(os.getenv('COUGH_DETECTION_THRESHOLD', 0.5))

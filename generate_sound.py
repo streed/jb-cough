@@ -28,14 +28,23 @@ def generate_beep_sound():
     print(f"Generating audio file: {output_path}")
     
     try:
+        # FFmpeg parameters for generating a two-tone beep
+        freq1 = '800'  # First tone frequency (Hz)
+        freq2 = '600'  # Second tone frequency (Hz)
+        duration = '0.15'  # Duration of each tone (seconds)
+        volume = '0.3'  # Volume level
+        
+        # Filter complex: concatenate two tones and adjust volume
+        filter_complex = f'[0:a][1:a]concat=n=2:v=0:a=1,volume={volume}'
+        
         # Create a two-tone beep that sounds like a polite notification
         subprocess.run([
             'ffmpeg', '-y',
             '-f', 'lavfi',
-            '-i', 'sine=frequency=800:duration=0.15',
+            '-i', f'sine=frequency={freq1}:duration={duration}',
             '-f', 'lavfi',
-            '-i', 'sine=frequency=600:duration=0.15',
-            '-filter_complex', '[0:a][1:a]concat=n=2:v=0:a=1,volume=0.3',
+            '-i', f'sine=frequency={freq2}:duration={duration}',
+            '-filter_complex', filter_complex,
             output_path
         ], check=True, capture_output=True)
         

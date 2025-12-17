@@ -120,6 +120,12 @@ class CoughDetectionBot(commands.Bot):
 class CoughAudioSink(discord.sinks.Sink):
     """Custom audio sink for processing voice data."""
     
+    # Audio processing constants
+    SAMPLE_RATE = 48000  # Hz
+    BYTES_PER_SAMPLE = 2  # 16-bit audio
+    CHANNELS = 2  # Stereo
+    BUFFER_DURATION = 0.5  # seconds
+    
     def __init__(self, bot: CoughDetectionBot, voice_client: discord.VoiceClient):
         """Initialize the audio sink."""
         super().__init__()
@@ -138,8 +144,9 @@ class CoughAudioSink(discord.sinks.Sink):
         
         self.user_audio_buffers[user].extend(data)
         
-        # Process when we have enough data (e.g., 0.5 seconds at 48kHz, 16-bit stereo)
-        buffer_size = 48000 * 2 * 2 * 0.5  # sample_rate * bytes_per_sample * channels * seconds
+        # Calculate buffer size: sample_rate * bytes_per_sample * channels * duration
+        buffer_size = (self.SAMPLE_RATE * self.BYTES_PER_SAMPLE * 
+                      self.CHANNELS * self.BUFFER_DURATION)
         
         if len(self.user_audio_buffers[user]) >= buffer_size:
             audio_data = bytes(self.user_audio_buffers[user])

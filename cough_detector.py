@@ -52,7 +52,9 @@ class CoughDetector:
             # Cough detection heuristics:
             # 1. Volume should exceed threshold
             # 2. Peak-to-RMS ratio indicates sudden burst
-            peak_to_rms_ratio = peak / (rms + 1)  # Add 1 to avoid division by zero
+            # Use small epsilon to avoid division by zero without skewing the ratio
+            epsilon = 1e-6
+            peak_to_rms_ratio = peak / (rms + epsilon) if rms > epsilon else 0
             
             # Detect cough if:
             # - RMS volume is above threshold
