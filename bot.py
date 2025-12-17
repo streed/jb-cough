@@ -71,10 +71,15 @@ class CoughDetectionBot(commands.Bot):
         # Create custom audio sink to process audio
         sink = CoughAudioSink(self, voice_client)
         
-        # Note: discord.py v2.x uses a different API for receiving audio
-        # This is a simplified version - actual implementation may need adjustments
-        # based on discord.py version
-        voice_client.listen(sink)
+        # Start receiving audio using discord.py's voice receive
+        # Note: This requires PyNaCl and the voice feature of discord.py
+        try:
+            voice_client.listen(sink)
+            print('Audio sink attached successfully')
+        except Exception as e:
+            print(f'Error starting audio listening: {e}')
+            print('Note: Audio receiving requires discord.py[voice] and may have limitations')
+            self.is_listening = False
     
     async def on_cough_detected(self, user: discord.User):
         """Handle cough detection."""

@@ -99,8 +99,21 @@ Download from [ffmpeg.org](https://ffmpeg.org/download.html) and add to PATH.
 
 ### Running the Bot
 
+**Standard Method:**
 ```bash
 python bot.py
+```
+
+**Using Docker:**
+```bash
+# Build and run with docker-compose
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop the bot
+docker-compose down
 ```
 
 The bot will connect to Discord and start monitoring voice channels.

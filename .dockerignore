@@ -1,0 +1,38 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+venv
+env
+.venv
+
+# Documentation
+*.md
+!README.md
+
+# Config
+.env
+
+# IDE
+.vscode
+.idea
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Scripts
+setup.py
+generate_sound.py
