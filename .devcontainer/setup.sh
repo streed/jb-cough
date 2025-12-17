@@ -6,7 +6,7 @@ echo "=================================================="
 
 # Update package lists
 echo "📦 Updating package lists..."
-sudo apt-get update -qq
+sudo apt-get update -q
 
 # Install FFmpeg (required for audio processing)
 echo "🎵 Installing FFmpeg..."
@@ -24,9 +24,9 @@ fi
 echo "🐍 Installing Python dependencies..."
 pip install --quiet -r requirements.txt
 
-# Verify key packages
+# Verify key packages (import using the actual module names)
 echo "📋 Verifying Python packages..."
-python3 -c "import discord; import numpy; from dotenv import load_dotenv; print('✅ All Python packages installed')" || {
+python3 -c "import discord; import numpy; import dotenv; print('✅ All Python packages installed')" || {
     echo "❌ Python package installation failed"
     exit 1
 }
